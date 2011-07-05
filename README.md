@@ -36,7 +36,7 @@ Operations that need to be performed to build up a rails server.
 1. configure & build with passenger-install-nginx-module:
     ``--conf-path=/home/winus/nginx/conf/nginx.conf --with-http_gzip_static_module``
 1. ``ln -s`` config files into nginx/conf
-1. ``sudo cp upstart.conf /etc/init/nginx.conf`` && ``sudo initctl start nginx``
+1. ``ln -s nginx.init /etc/init.d/nginx`` && ``update-rc.d nginx defaults``
 
 ### III. PostgreSQL
 
