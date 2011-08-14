@@ -38,6 +38,14 @@ Operations that need to be performed to build up a rails server.
 1. ``ln -s`` config files into nginx/conf
 1. ``ln -s nginx.init /etc/init.d/nginx`` && ``update-rc.d nginx defaults``
 
+#### Plan B - Unicorn and Nginx
+
+1. install nginx anyway
+1. ``bundle install`` to set up unicorn
+1. ``rvm wrapper ruby-1.9.2-p136 r192 unicorn``
+1. ``cp unicorn_upstart.conf /etc/init/rails_app.conf``
+1. use **rails_unicorn.conf** as server config
+
 ### III. PostgreSQL
 
 To be added soon...
