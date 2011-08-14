@@ -43,7 +43,7 @@ Operations that need to be performed to build up a rails server.
 1. install nginx anyway
 1. ``bundle install`` to set up unicorn
 1. ``rvm wrapper ruby-1.9.2-p136 r192 unicorn``
-1. ``cp unicorn_upstart.conf /etc/init/rails_app.conf``
+1. ``ln -s unicorn.init /etc/init.d/unicorn`` && ``update-rc.d unicorn defaults``
 1. use **rails_unicorn.conf** as server config
 
 ### III. PostgreSQL
