@@ -1,0 +1,16 @@
+[user]
+	name = Winus Peng
+	email = iwinux@gmail.com
+[alias]
+	st = status
+	ci = commit
+    co = checkout
+    bra = branch
+    l = log --pretty=format:'%h - %an - %ar: %s' -10
+    what = whatchanged --oneline HEAD..
+[color]
+	ui = true
+[core]
+	mergeoptions = --no-ff --log
+[push]
+	default = tracking
