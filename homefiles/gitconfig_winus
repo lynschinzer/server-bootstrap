@@ -1,0 +1,16 @@
+[user]
+	name = Limbo Peng
+	email = iwinux@gmail.com
+[alias]
+	st = status
+	ci = commit
+    co = checkout
+    br = branch
+    ll = log --pretty=format:'[%Cred%an%Creset] %Cgreen%ar %Cred%h %Creset%s'
+    what = whatchanged --pretty=format:'[%Cred%an%Creset] %Cgreen%ar %Cred%h %Creset%s'
+[color]
+	ui = true
+[core]
+	mergeoptions = --no-ff --log
+[push]
+	default = tracking

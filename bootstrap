@@ -1,0 +1,22 @@
+#! /bin/bash
+
+function explain_pkg {
+    printf "  $1\t\t$2\n"
+}
+
+function show_usage {
+    printf "Usage: $0 <package>\n\n"
+    explain_pkg "deps" "install dependencies - this should be run first"
+    explain_pkg "vim" "build and install vim 7.3 from source"
+}
+
+if [ -z $1 ]
+then
+    show_usage
+    exit 1
+fi
+
+if [[ $1 != "deps" && ! -s /var/cache/DEPS_INSTALLED ]]
+then
+    echo "Please run $0 deps first."
+fi
