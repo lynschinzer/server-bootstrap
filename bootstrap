@@ -23,4 +23,5 @@ then
     exit 1
 fi
 
+export NUM_OF_CORES=`cat /proc/cpuinfo | grep processor | wc -l`
 $1/setup.sh
