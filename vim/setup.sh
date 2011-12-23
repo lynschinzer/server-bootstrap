@@ -3,6 +3,8 @@
 VIM_SOURCE_URL=ftp://ftp.vim.org/pub/vim/unix/vim-7.3.tar.bz2
 VIM_SOURCE_DIR=vim73
 
+apt-get remove --yes vim-tiny vim
+
 cd /tmp/
 wget $VIM_SOURCE_URL -O vim.tar.bz2
 tar xvf vim.tar.bz2
