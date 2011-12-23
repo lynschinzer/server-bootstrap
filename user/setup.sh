@@ -1,14 +1,17 @@
 #! /bin/bash
 
+PKG_HOME=`basename $0`
+
 function copy_to_home {
     local dest=$1
     shift
 
     for i in $@
     do
-        cp ./homefiles/$i "$dest/.$i"
+        cp $PKG_HOME/$i "$dest/.$i"
     done
 }
+
 
 groupadd dev
 
