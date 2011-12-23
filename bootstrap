@@ -10,13 +10,16 @@ function show_usage {
     explain_pkg "vim" "build and install vim 7.3 from source"
 }
 
-if [ -z $1 ]
+PACKAGE=$1
+shift
+
+if [ -z $PACKAGE ]
 then
     show_usage
     exit 1
 fi
 
-if [[ $1 != "deps" && ! -f /var/cache/DEPS_INSTALLED ]]
+if [[ $PACKAGE != "deps" && ! -f /var/cache/DEPS_INSTALLED ]]
 then
     echo "You need to run the following command before performing any further operation:"
     printf "\t$0 deps\n"
@@ -24,4 +27,4 @@ then
 fi
 
 export NUM_OF_CORES=`cat /proc/cpuinfo | grep processor | wc -l`
-$1/setup.sh
+$PACKAGE/setup.sh $@

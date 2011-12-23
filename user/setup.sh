@@ -1,30 +1,29 @@
 #! /bin/bash
 
-PKG_HOME=`basename $0`
+CONFIG_DIR="`dirname $0`/config"
 
-function copy_to_home {
-    local dest=$1
-    shift
+function copy_config_to_home {
+    local dest="/home/$1"
 
-    for i in $@
+    for i in `ls $CONFIG_DIR`
     do
-        cp $PKG_HOME/$i "$dest/.$i"
+        cp $CONFIG_DIR/$i "$dest/.$i"
     done
 }
 
+USERNAME=$1
 
-groupadd dev
+if [ -z $USERNAME ]
+then
+    echo "no username specified"
+    exit 1
+fi
 
-useradd -m deploy
-echo "Set password for user 'deploy'"
-passwd deploy
-copy_to_home "/home/deploy" "bashrc" "gemrc" "gitconfig_deploy" "rvmrc"
-mv /home/deploy/.gitconfig_deploy /home/deploy/.gitconfig
+useradd -m -G sudo,admin $USERNAME
 
-useradd -m -G dev,sudo,admin winus
-echo "Set password for user 'winus'"
-passwd winus
-copy_to_home "/home/winus" "bashrc" "gitconfig_winus" "screenrc"
-mv /home/winus/.gitconfig_winus /home/winus/.gitconfig
+echo "Set password for user '$USERNAME'"
+passwd $USERNAME
+
+copy_config_to_home $USERNAME
 
 exit $?
