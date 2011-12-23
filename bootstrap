@@ -16,7 +16,11 @@ then
     exit 1
 fi
 
-if [[ $1 != "deps" && ! -s /var/cache/DEPS_INSTALLED ]]
+if [[ $1 != "deps" && ! -f /var/cache/DEPS_INSTALLED ]]
 then
-    echo "Please run $0 deps first."
+    echo "You need to run the following command before performing any further operation:"
+    printf "\t$0 deps\n"
+    exit 1
 fi
+
+$1/setup.sh
