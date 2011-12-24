@@ -1,6 +1,6 @@
 #! /bin/bash
 
-CONFIG_DIR="`dirname $0`/config"
+CONFIG_DIR="`readlink -f $0 | xargs dirname`/config"
 
 function copy_config_to_home {
     local dest="/home/$1"
