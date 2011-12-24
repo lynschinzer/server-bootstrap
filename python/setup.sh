@@ -1,10 +1,13 @@
 #! /bin/bash
 
-curl -kL http://xrl.us/pythonbrewinstall | bash
-echo "[[ -s \$HOME/.pythonbrew/etc/bashrc ]] && source \$HOME/.pythonbrew/etc/bashrc" >> $HOME/.bashrc
-source $HOME/.bashrc
-pythonbrew install 2.7.2
-pythonbrew switch 2.7.2
+USERNAME=$1
 
-[[ $? -eq 0 ]] && echo "Done setting up Python 2.7.2"
-exit $?
+if [ -z $USERNAME ]
+then
+    echo "no username specified"
+    exit 1
+fi
+
+cp `readlink -f $0 | xargs dirname`/install.sh /tmp/install-python.sh
+chmod 777 /tmp/install-python.sh
+su - $USERNAME -c "NUM_OF_CORES=$NUM_OF_CORES /tmp/install-python.sh"

@@ -1,7 +1,6 @@
 #! /bin/bash
 
 bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
-echo "[[ -s \$HOME/.rvm/scripts/rvm ]] && source \$HOME/.rvm/scripts/rvm" >> $HOME/.bashrc
 echo "[[ -r \$rvm_path/scripts/completion ]] && source \$rvm_path/scripts/completion" >> $HOME/.bashrc
 source $HOME/.bashrc
 
