@@ -19,7 +19,7 @@ then
     exit 1
 fi
 
-useradd -m -G sudo,admin $USERNAME
+useradd -m -G sudo,admin -s `which bash` $USERNAME
 
 echo "Set password for user '$USERNAME'"
 passwd $USERNAME
