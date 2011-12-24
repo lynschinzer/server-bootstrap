@@ -1,10 +1,13 @@
 #! /bin/bash
 
-bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
-echo "[[ -s \$HOME/.rvm/scripts/rvm ]] && source \$HOME/.rvm/scripts/rvm" >> $HOME/.bashrc
-echo "[[ -r \$rvm_path/scripts/completion ]] && source \$rvm_path/scripts/completion" >> $HOME/.bashrc
-source $HOME/.bashrc
-rvm install 1.9.3 && rvm --default 1.9.3
+USERNAME=$1
 
-[[ $? -eq 0 ]] && echo "Done setting up Ruby 1.9.3"
-exit $?
+if [ -z $USERNAME ]
+then
+    echo "no username specified"
+    exit 1
+fi
+
+cp `readlink -f $0 | xargs dirname`/install.sh /tmp/install-ruby.sh
+chmod 777 /tmp/install-ruby.sh
+su - $USERNAME -c "NUM_OF_CORES=$NUM_OF_CORES /tmp/install-ruby.sh"
