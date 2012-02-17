@@ -34,4 +34,4 @@ then
 fi
 
 export NUM_OF_CORES=`cat /proc/cpuinfo | grep processor | wc -l`
-$PACKAGE/setup.sh $@
+bash $PACKAGE/setup.sh $@
