@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+# chkconfig: 2345 85 15
+# description: Control PostgreSQL 9.1 server process 
+
+### BEGIN INIT INFO
+# Provides:          postgres-9.1-openscg
+# Required-Start: $remote_fs   
+# Required-Stop: $remote_fs    
+# Should-Start:  
+# Should-Stop:  
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: PostgreSQL 9.1 
+# Description: PostgreSQL 9.1 Server       
+### END INIT INFO
+
+POSTGRES_ROOT=/opt/postgres/9.1
+POSTGRES_DATA=/data/postgres/data
+
+function start() {
+    echo "Starting PostgreSQL 9.1: "
+    su - postgres -c "LD_LIBRARY_PATH=$POSTGRES_ROOT/lib:$LD_LIBRARY_PATH $POSTGRES_ROOT/bin/pg_ctl -w start -D $POSTGRES_DATA -l $POSTGRES_DATA/pg_log/startup.log"
+
+    if [ $? -eq 0 ];
+    then
+        echo "PostgreSQL 9.1 started successfully"
+        exit 0
+    else
+        echo "The PostgreSQL server start seems to have some problems, please see logs for details."
+        exit 1
+    fi
+}
+
+function stop() {
+    echo "Stopping PostgreSQL 9.1: "
+    su - postgres -c "LD_LIBRARY_PATH=$POSTGRES_ROOT/lib:$LD_LIBRARY_PATH $POSTGRES_ROOT/bin/pg_ctl stop -m fast -w -D $POSTGRES_DATA"
+}
+
+function reload() {
+    echo "Reloading PostgreSQL 9.1: "
+    su - postgres -c "LD_LIBRARY_PATH=$POSTGRES_ROOT/lib:$LD_LIBRARY_PATH $POSTGRES_ROOT/bin/pg_ctl reload -D $POSTGRES_DATA"
+}
+
+function restart() {
+    if [ -f "$POSTGRES_DATA/postmaster.pid" ]; then
+        stop
+        sleep 3
+        start
+    else
+        start
+    fi
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    reload)
+        reload
+        ;;
+    force-reload)
+        reload
+        ;;
+    restart)
+        restart
+        ;;
+    status)
+        su - postgres -c "LD_LIBRARY_PATH=$POSTGRES_ROOT/lib:$LD_LIBRARY_PATH $POSTGRES_ROOT/bin/pg_ctl status -D $POSTGRES_DATA"
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac

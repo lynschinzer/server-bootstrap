@@ -1,0 +1,12 @@
+#!/bin/bash
+
+POSTGRES_ROOT=/opt/postgres/9.1
+POSTGRES_DATA=/data/postgres/data
+
+export PGHOME=$POSTGRES_ROOT
+export PGDATA=$POSTGRES_DATA
+export PATH=$POSTGRES_ROOT/bin:$PATH
+export LD_LIBRARY_PATH=$POSTGRES_ROOT/lib:$LD_LIBRARY_PATH
+export PGUSER=postgres
+export PGDATABASE=postgres
+export PGPORT=5432

@@ -10,6 +10,7 @@ function show_usage {
     explain_pkg "mongodb" "download and install MongoDB to /opt/mongodb (ATTENTION: it is for x64)"
     explain_pkg "nginx" "build and install Nginx from source - it will be installed to /opt/nginx"
     explain_pkg "openvpn" "install OpenVPN and set up the server"
+    explain_pkg "postgres" "install PostgreSQL and initialize cluster at /data/postgres/data"
     explain_pkg "python" "install pythonbrew and build Python 2.7.2 from source via pythonbrew (installed to home directory of the specified user)"
     explain_pkg "ruby" "install RVM and build Ruby 1.9.3 from source via RVM (installed to home directory of the specified user)"
     explain_pkg "user" "create user with sudo priviledge and copy necessary config files"
