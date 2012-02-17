@@ -24,9 +24,11 @@ update-rc.d postgres defaults
 mkdir -p $POSTGRES_DATA
 
 groupadd postgres
-useradd -m -c "PostgreSQL" -d $POSTGRES_DATA -g postgres postgres
+useradd -m -c "PostgreSQL" -s /bin/bash -d $POSTGRES_DATA -g postgres postgres
 echo 'Setting password for user postgres...'
 passwd postgres
+
+chown -R postgres:postgres $POSTGRES_DATA
 
 su - postgres -c "LD_LIBRARY_PATH=$POSTGRES_ROOT/lib:$LD_LIBRARY_PATH $POSTGRES_ROOT/bin/initdb  -E utf8 -A md5 -D $POSTGRES_DATA -U postgres -W"
 
