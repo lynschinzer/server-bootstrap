@@ -27,10 +27,10 @@ if [ -n "$PS1" ]; then
         }
     fi
 
-    D=$'\e[37;40m'
-    PINK=$'\e[35;40m'
-    GREEN=$'\e[32;40m'
-    ORANGE=$'\e[33;40m'
+    D=$'\e[m'
+    PINK=$'\e[35m'
+    GREEN=$'\e[32m'
+    ORANGE=$'\e[33m'
 
     function parse_git_dirty {
       [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
