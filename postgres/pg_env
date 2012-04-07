@@ -1,0 +1,8 @@
+#!/bin/bash
+export LD_PRELOAD=/lib/libreadline.so.5:/lib/libreadline.so.5.2:/lib/libreadline.so.6.1:/lib/libreadline.so.6:
+export PGHOME=/opt/postgres/9.1
+export PGDATA=/data/postgres/data
+export PATH=/opt/postgres/9.1/bin:$PATH
+export LD_LIBRARY_PATH=/opt/postgres/9.1/lib:$LD_LIBRARY_PATH
+export PGUSER=postgres
+export PGDATABASE=postgres
